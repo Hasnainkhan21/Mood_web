@@ -4,8 +4,8 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import SignUp from './pages/SIgnUp.jsx'
-
 import Home from './pages/Home.jsx'
+
 
 function App() {
   return (
@@ -18,6 +18,8 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
       </Routes>
     </BrowserRouter>
+
+    
     </>
   )
 }
