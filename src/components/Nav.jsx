@@ -15,7 +15,7 @@ const Nav = () => {
             <li className=' hover:text-gray-200'><Link to="/">Home</Link></li>
             <li className=' hover:text-gray-200'><Link to="/about">About</Link></li>
             <li className=' hover:text-gray-200'><Link to="/contact">Contact</Link></li>
-            <li className=' hover:text-gray-200'><Link to ="/signup" className='border hover:bg-white hover:text-black p-2 rounded-lg'>SignUp</Link></li>
+            <li className=' hover:text-gray-200'><Link to ="/signup" className='border-yellow-500 border-1 00 hover:bg-white hover:text-black p-2 rounded-lg'>SignUp</Link></li>
         </ul>
     </nav>
   )

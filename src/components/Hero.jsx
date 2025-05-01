@@ -23,7 +23,7 @@ const Hero = () => {
 
   return (
     <div className="hero px-6 md:px-10 mt-20">
-      <div className="w-full h-96 flex flex-col md:flex-row rounded-2xl bg-blue-500 shadow-xl overflow-hidden">
+      <div className="w-full h-96 flex flex-col md:flex-row rounded-2xl bg-blue-600 shadow-xl overflow-hidden">
 
         {/* Text Section */}
         <div className="w-full  md:w-1/2 flex flex-col justify-center font-[Syne] px-8 text-white space-y-3">
