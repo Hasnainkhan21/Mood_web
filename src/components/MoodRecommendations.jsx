@@ -11,8 +11,8 @@ function MoodRecommendations() {
     <div className='hero px-6 md:px-10 mt-20'>
       {/* Heading */}
       <div className='text-center mb-10 font-[syne]'>
-        <h1 className='text-4xl md:text-6xl '>Mood-Based</h1>
-        <h1 className='text-4xl md:text-6xl '>Recommendations</h1>
+        <h1 className='text-4xl md:text-6xl text-gray-900'>Mood-Based</h1>
+        <h1 className='text-4xl md:text-6xl text-gray-900'>Recommendations</h1>
         <p className='text-xl md:text-2xl text-gray-600 mt-4'>
           Choose your current mood and discover songs,
         </p>
@@ -34,21 +34,21 @@ function MoodRecommendations() {
       {/* Suggestions */}
       <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
         {/* Music Card */}
-        <div className='bg-orange-200 h-65 rounded-2xl p-4 flex flex-col justify-center items-center text-center'>
+        <div className='bg-gray-400 h-65 rounded-2xl p-4 flex flex-col justify-center items-center text-center'>
           <img src={hPhone} alt="" className='size-17'/>
           <h3 className='text-2xl font-bold'>Music Suggestions</h3>
           <p>Playlist to match your mood</p>
         </div>
 
         {/* Movie Card */}
-        <div className='bg-blue-200 h-65 rounded-2xl p-4 flex flex-col justify-center items-center text-center'>
+        <div className='bg-gray-400 h-65 rounded-2xl p-4 flex flex-col justify-center items-center text-center'>
           <img src={TV} alt="" className='size-17'/>
           <h3 className='text-2xl font-bold'>Movie Suggestions</h3>
           <p>Movies that reflect your feelings</p>
         </div>
 
         {/* Book Card */}
-        <div className='bg-purple-200 h-65 rounded-2xl p-4 flex flex-col justify-center items-center text-center'>
+        <div className='bg-gray-400 h-65 rounded-2xl p-4 flex flex-col justify-center items-center text-center'>
           <img src={img1} alt=""  className='size-16'/>
           <h3 className='text-2xl font-bold'>Book Suggestions</h3>
           <p>Read something that resonates</p>
