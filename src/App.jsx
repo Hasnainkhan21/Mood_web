@@ -2,8 +2,8 @@ import './index.css'
 import React from 'react'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import About from './pages/About.jsx'
-import Contact from './pages/Contact.jsx'
-import SignUp from './pages/SIgnUp.jsx'
+import Features from './pages/Features.jsx'
+import SignUp from './pages/SignUp.jsx'
 import Home from './pages/Home.jsx'
 import Happy from './pages/Happy.jsx'
 import Angry from './pages/Angry.jsx'
@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path='/features' element={<Features />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/happymood' element={<Happy />} />
         <Route path='/angrymood' element={<Angry />} />

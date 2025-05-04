@@ -89,11 +89,11 @@ function SignUp() {
     onSubmit={handleSubmit}
     className="w-full max-w-2xl bg-white p-8 shadow-md flex flex-col gap-6"
   >
-    <h2 className="text-2xl font-bold text-center text-blue-800">Create Account</h2>
+    <h2 className="text-2xl font-bold text-center text-gray-600">Create Account</h2>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <label htmlFor="username" className="block mb-1 text-blue-700 font-medium">
+        <label htmlFor="username" className="block mb-1 text-gray-600 font-medium">
           Username
         </label>
         <input
@@ -102,14 +102,14 @@ function SignUp() {
           name="username"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-400"
           placeholder="Enter your username"
         />
         <p className='text-red-600 text-[12px] ml-5'>{error}</p>
       </div>
 
       <div>
-        <label htmlFor="email" className="block mb-1 text-blue-700 font-medium">
+        <label htmlFor="email" className="block mb-1 text-gray-700 font-medium">
           Email
         </label>
         <input
@@ -118,14 +118,14 @@ function SignUp() {
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-400"
           placeholder="Enter your email"
         />
         <p className='text-red-600 text-[12px] ml-5'>{error1}</p>
       </div>
 
       <div>
-        <label htmlFor="password" className="block mb-1 text-blue-700 font-medium">
+        <label htmlFor="password" className="block mb-1 text-gray-700 font-medium">
           Password
         </label>
         <input
@@ -141,7 +141,7 @@ function SignUp() {
       </div>
 
       <div>
-        <label htmlFor="confpass" className="block mb-1 text-blue-700 font-medium">
+        <label htmlFor="confpass" className="block mb-1 text-gray-700 font-medium">
           Confirm Password
         </label>
         <input
@@ -150,7 +150,7 @@ function SignUp() {
           name="confpass"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-400"
           placeholder="Confirm password"
         />
         <p className='text-red-600 text-[12px] ml-5'>{error2}</p>
@@ -159,7 +159,7 @@ function SignUp() {
 
     <button
       type="submit"
-      className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-200 text-lg font-semibold"
+      className="w-full bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 transition duration-200 text-lg font-semibold"
     >
       Sign Up
     </button>

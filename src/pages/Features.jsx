@@ -1,13 +1,13 @@
 import React from 'react'
 import Nav from '../components/nav'
 
-function Contact() {
+function Features() {
   return (
     <div>
         <Nav />
-      <h1>This is contact</h1>
+      <h1>This is Features</h1>
     </div>
   )
 }
 
-export default Contact
+export default Features;
