@@ -15,12 +15,20 @@ export default function About() {
     <Nav />   
   
     {/* img section */}
-    <div className="bg-cover flex flex-col  pr-10 justify-evenly items-end bg-center bg-no-repeat h-120 w-full"  style={{ backgroundImage: `url(${img})` }}>
-        <div className='w-120  h-80 flex flex-col gap-5'>
-          <h1 className='text-7xl font-[syne] text-white'>About Us</h1>
-          <p className='text-[18px] text-gray-700'>We Help you find music movie and books <br /> that match your mood.Wharever you are feeling, <br /> we have recommendations that</p>
-        </div>
-    </div>
+    <div 
+  className="bg-cover bg-center bg-no-repeat w-full min-h-[30rem] flex flex-col items-end justify-center pr-6 md:pr-10"
+  style={{ backgroundImage: `url(${img})` }}
+>
+  <div className="w-full max-w-xl h-auto flex flex-col gap-4 text-right px-4 md:px-0">
+    <h1 className="text-4xl md:text-6xl font-[Syne] text-white">About Us</h1>
+    <p className="text-base md:text-lg text-gray-200 leading-relaxed">
+      We help you find music, movies, and books <br />
+      that match your mood. Whatever you’re feeling, <br />
+      we have recommendations just for you.
+    </p>
+  </div>
+</div>
+
 
     <div className="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
