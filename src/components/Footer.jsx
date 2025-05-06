@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {/* Section 1: Brand Info */}
         <div>
-          <h3 className="text-2xl font-bold mb-4">Emotica</h3>
+          <h3 className="text-2xl font-bold mb-4">Moodora</h3>
           <p className="text-black">
           Explore music, movies, and books tailored to your mood. Start feeling better, one click at a time
           </p>

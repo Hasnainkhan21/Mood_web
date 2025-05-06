@@ -1,61 +1,67 @@
-// MovieCarousel.jsx
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { movies } from './MoviesObject';
 import '@fontsource/syne';
 
 export default function MovieCarousel() {
-  const carouselRef = useRef(null);
+  const [startIndex, setStartIndex] = useState(0);
+  const itemsPerPage = 6; // 3 per row x 2 rows
 
-  const scrollLeft = () => {
-    carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+  const nextPage = () => {
+    if (startIndex + itemsPerPage < movies.length) {
+      setStartIndex(startIndex + itemsPerPage);
+    }
   };
 
-  const scrollRight = () => {
-    carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+  const prevPage = () => {
+    if (startIndex - itemsPerPage >= 0) {
+      setStartIndex(startIndex - itemsPerPage);
+    }
   };
+
+  const visibleMovies = movies.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className=" items-center gap-4 overflow-hidden p-10">   
-        {/* buttons div */}
-        <div className='flex justify-between py-2'>
-  <button onClick={scrollLeft} className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
-  >Back</button>
-  <h2 className='font-[syne] text-2xl text-red-500'>Movies</h2>
-  <button onClick={scrollRight} className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
-  >Next</button>
-  </div>
+    <div className="p-8 min-h-screen text-white">
+      <h2 className="font-[syne] text-3xl text-red-500 mb-6 text-center">Movies</h2>
 
-  {/* card dev */}
-  <div
-  ref={carouselRef}
-  className="flex overflow-x-auto space-x-6"
->
-  {movies.map((movie, index) => (
-    <div
-      key={index}
-      className="w-[300px] bg-gray-600 text-white shadow-md rounded-lg p-4 flex-shrink-0 text-center transition-transform transform hover:-translate-y-2 hover:shadow-lg duration-250"
-    >
-      <img
-        src={movie.img}
-        alt={movie.title}
-        className="w-full h-56 object-cover rounded-md mb-2 transition-transform duration-300 hover:scale-101"
-      />
-      <h3 className="text-lg font-semibold mb-1">{movie.title}</h3>
-      <p className="text-gray-300">{movie.year}</p>
-      <button
-        type="button"
-        className="mt-4 px-4 py-1.5 bg-red-600 text-white cursor-pointer rounded text-sm font-semibold 
-               hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 transition-colors duration-300"
-      >
-        Watch
-      </button>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {visibleMovies.map((movie, index) => (
+          <div
+            key={index}
+            className="bg-gray-700 text-white rounded-lg shadow-lg p-3 text-center hover:bg-gray-600 transition duration-300"
+          >
+            <img
+              src={movie.img}
+              alt={movie.title}
+              className="w-full h-60 object-cover rounded mb-3"
+            />
+            <h3 className="text-md font-semibold">{movie.title}</h3>
+            <p className="text-gray-300 text-sm">{movie.year}</p>
+            <button className="mt-3 px-4 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm">
+              Watch
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-center mt-8 space-x-4">
+        {startIndex > 0 && (
+          <button
+            onClick={prevPage}
+            className="bg-gray-800 text-white px-5 py-2 rounded hover:bg-gray-700 transition"
+          >
+            Back
+          </button>
+        )}
+        {startIndex + itemsPerPage < movies.length && (
+          <button
+            onClick={nextPage}
+            className="bg-red-600 text-white px-5 py-2 rounded hover:bg-red-700 transition"
+          >
+            Next
+          </button>
+        )}
+      </div>
     </div>
-  ))}
-</div>
-
-
-  
-</div>
-
   );
 }
