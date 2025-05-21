@@ -36,8 +36,8 @@ const Nav = () => {
           <li className="hover:text-gray-200"><Link to="/features">Features</Link></li>
           <li className="hover:text-gray-200"><Link to="/about">About</Link></li>
           <li>
-            <Link to="/signup" className="border-yellow-500 border hover:bg-white hover:text-black p-2 rounded-lg">
-              SignUp
+            <Link to='/login' className="border-yellow-500 border hover:bg-white hover:text-black p-2 rounded-lg">
+              Sign In
             </Link>
           </li>
         </ul>

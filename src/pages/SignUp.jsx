@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { Add_User } from '../API/Api_uri';
+import { Add_User_EndPoint } from '../API/Api_endpoints';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
+  const Nav = useNavigate();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [msg, setMsg] = useState("")
 
   const [errors, setErrors] = useState({
     userName: "",
@@ -49,9 +55,27 @@ function SignUp() {
       return;
     }
 
-    // Success
-    alert("Account created successfully");
-    console.log({ userName, email, password });
+  
+
+    // connecting with backend
+    const newUser ={ 
+                     userName : userName,
+                     email: email,
+                     password: password 
+                  }  
+    console.log("newUser", newUser);
+    const URI = Add_User + Add_User_EndPoint;
+    axios.post(URI, newUser)
+         .then((res)=>{
+            console.log(res);
+            setMsg(res.data);
+            alert("Account created successfully");
+            Nav('/login');
+          })
+          .catch((error)=>{
+            console.log(error);
+            setMsg("failed Server error");
+          })
 
     // Clear form
     setUserName("");
@@ -62,8 +86,6 @@ function SignUp() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
-      <h1 className="text-3xl font-bold mb-6">Sign Up</h1>
-
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-2xl rounded-lg bg-white p-8 shadow-md flex flex-col gap-6"
