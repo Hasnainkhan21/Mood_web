@@ -37,7 +37,7 @@ export default function MovieCarousel() {
             />
             <h3 className="text-md font-semibold">{movie.title}</h3>
             <p className="text-gray-300 text-sm">{movie.year}</p>
-            <button className="mt-3 px-4 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm">
+            <button className="mt-3 px-4 py-1 cursor-pointer bg-red-600 text-white rounded hover:bg-red-700 text-sm">
               Watch
             </button>
           </div>
@@ -56,7 +56,7 @@ export default function MovieCarousel() {
         {startIndex + itemsPerPage < movies.length && (
           <button
             onClick={nextPage}
-            className="bg-red-600 text-white px-5 py-2 rounded hover:bg-red-700 transition"
+            className="bg-red-600 cursor-pointer text-white px-5 py-2 rounded hover:bg-red-700 transition"
           >
             Next
           </button>

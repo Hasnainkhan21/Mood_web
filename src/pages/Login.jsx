@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Add_User } from '../API/Api_uri';
 import { Login_User } from '../API/Api_endpoints';
 import { useNavigate, Link } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+
 
 const Login = () => {
   const Nav = useNavigate();
@@ -42,10 +44,11 @@ const Login = () => {
       if (data) {
         setMsg(data.msg);   //get the backend msg (login successffull/not)
         localStorage.setItem('token', data.User_Token);   //stores the generated token in localstorage
+        localStorage.setItem('userName', data.LoginUser.userName)
         Nav('/');
       }
     } catch (err) {
-      setError('Login failed. Please check your credintials.');
+      setError("Account not found");
       console.error(err);
     }
   };
@@ -54,8 +57,8 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-        {error && <p className="text-red-500 mb-4 text-sm text-center">{error}</p>}
-        {msg && <p className="text-green-500 mb-4 text-sm text-center">{msg}</p>}
+        {error && <Alert severity="error">{error}</Alert>}
+        {msg && <Alert severity="success">{msg}</Alert>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-600 text-sm mb-2">Email</label>
@@ -63,7 +66,7 @@ const Login = () => {
               type="email"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value) || setError('')}
               placeholder="you@example.com"
             />
           </div>
@@ -73,7 +76,7 @@ const Login = () => {
               type="password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value) || setError('')}
               placeholder="********"
             />
           </div>

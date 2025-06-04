@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'
 
+
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const[tokenIs, setToken] = useState(null)
+  const [username, setUser] = useState(null)
+
+useEffect(()=>{
+  const token = localStorage.getItem('token');
+  const username = localStorage.getItem('userName');
+  setToken(token)
+  setUser(username)
+},[tokenIs])
+
+  const Logout = () =>{
+    localStorage.clear()
+    setToken(null)  
+  }
  
   return (
     <nav className="bg-gray-600 text-white p-4">
@@ -31,16 +46,41 @@ const Nav = () => {
         </div>
 
         {/* Full nav for medium and up */}
-        <ul className="hidden md:flex space-x-7">
-          <li className="hover:text-gray-200"><Link to="/">Home</Link></li>
-          <li className="hover:text-gray-200"><Link to="/features">Features</Link></li>
-          <li className="hover:text-gray-200"><Link to="/about">About</Link></li>
-          <li>
-            <Link to='/login' className="border-yellow-500 border hover:bg-white hover:text-black p-2 rounded-lg">
-              Sign In
-            </Link>
-          </li>
-        </ul>
+        <ul className="hidden md:flex items-center space-x-5 text-md ">
+  <li>
+    <Link to="/" className="hover:text-gray-300 transition duration-300">Home</Link>
+  </li>
+  <li>
+    <Link to="/features" className="hover:text-gray-300 transition duration-300">Features</Link>
+  </li>
+  <li>
+    <Link to="/about" className="hover:text-gray-300 transition duration-300">About</Link>
+  </li>
+
+{/* logout and Login functionality */}
+  {tokenIs ? (
+    <>
+      <li className="text-yellow-300 text-[25px]  font-[syne]">
+        {username}
+      </li>
+      <li>
+        <button onClick={Logout} className="border cursor-pointer border-red-500 text-gray-200 hover:bg-red-500 hover:text-white px-3 py-1 rounded-lg transition duration-300">
+          Logout
+        </button>
+      </li>
+    </>
+  ) : (
+    <li>
+      <Link
+        to="/login"
+        className="border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-4 py-1 rounded-lg transition duration-300"
+      >
+        Sign In
+      </Link>
+    </li>
+  )}
+</ul>
+
       </div>
 
       {/* Mobile nav dropdown */}
