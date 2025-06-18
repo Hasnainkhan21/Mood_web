@@ -26,7 +26,7 @@ function Relaxed() {
 
 {/* Movies section */}
 <div className=' px-8'>
-<MovieCarousel />
+<MovieCarousel key={Date.now()} mood="relaxed"/>
 </div>
 {/* books */}
 <div className='flex justify-center h-10 font-[syne] text-[30px] text-green-500'><p>Books</p></div>

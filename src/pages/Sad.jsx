@@ -5,6 +5,7 @@ import Card from '../components/Card';
 import MovieCarousel from '../components/Movies';
 import Books from '../components/Books';
 import Footer from '../components/Footer.jsx'
+import SpotifySearch from '../components/SpotifySearch.jsx';
 
 function Sad() {
   return (
@@ -18,16 +19,17 @@ function Sad() {
 
 {/* Music */}
 <div className='flex justify-center h-10 font-[syne] text-[30px] text-blue-500'><p>Music</p></div>
-    <div className="flex flex-col md:flex-row justify-center items-center gap-10 px-4 pb-5">
+    {/* <div className="flex flex-col md:flex-row justify-center items-center gap-10 px-4 pb-5">
   <Card title="English" />
   <Card title="Hindi" />
   <Card title="Turkish" />
   <Card title="All" />
-</div>
+</div> */}
+<SpotifySearch mood="sad" />
 
 {/* Movies section */}
 <div className=' px-8'>
-<MovieCarousel />
+<MovieCarousel key={Date.now()} mood="Sad"/>
 </div>
 {/* books */}
 <div className='flex justify-center h-10 font-[syne] text-[30px] text-green-500'><p>Books</p></div>

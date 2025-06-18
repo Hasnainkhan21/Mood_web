@@ -3,23 +3,23 @@ import React from 'react';
 function Books() {
   const book = [
     {
-      img: 'https://shorturl.at/JUZY5',
+      img: '',
       title: "The Forty Rules of Love",
       author: "Elif Shafak",
     },
     {
-      img: 'https://shorturl.at/xWu2R',
+      img: '',
       title: "Alchemist",
       author: "Paulo Cohelo",
     },
    
     {
-      img: 'https://shorturl.at/tILxr',
+      img: '',
       title: "Eleven Minutes",
       author: "Paulo Cohelo",
     },
     {
-      img: 'https://shorturl.at/l4Zq2',
+      img: '',
       title: "Homo Deus",
       author: "Yuval Noah Harari",
     }
@@ -33,7 +33,7 @@ function Books() {
       className="w-[250px] bg-white rounded-lg shadow-green-300 p-4 text-center transition-transform transform hover:-translate-y-2 hover:shadow-lg duration-300"
     >
       <img
-        src={element.img || 'https://via.placeholder.com/150'}
+        
         alt={element.title}
         className="w-full h-60 object-cover rounded-md mb-4"
       />
