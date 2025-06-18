@@ -1,7 +1,6 @@
 import React from 'react'
 import Top from '../components/Top'
 import '@fontsource/syne';
-import Card from '../components/Card';
 import MovieCarousel from '../components/Movies';
 import Books from '../components/Books';
 import Footer from '../components/Footer.jsx'
@@ -18,13 +17,7 @@ function Angry() {
     </div>
 {/* Music */}
     <div className='flex justify-center h-10 font-[syne] text-[30px] text-blue-500'><p>Music</p></div>
-    {/* <div className="flex flex-col md:flex-row justify-center items-center gap-10 px-4 pb-5">
-    
-  <Card title="English" />
-  <Card title="Hindi" />
-  <Card title="Turkish" />
-  <Card title="All" />
-</div> */}
+
 <SpotifySearch mood="angry" />
 
 {/* Movies section */}

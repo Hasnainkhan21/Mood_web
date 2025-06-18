@@ -1,10 +1,10 @@
 import React from 'react'
 import Top from '../components/Top'
 import '@fontsource/syne';
-import Card from '../components/Card';
 import MovieCarousel from '../components/Movies';
 import Books from '../components/Books';
 import Footer from '../components/Footer.jsx'
+import SpotifySearch from '../components/SpotifySearch.jsx';
 
 function Happy() {
   return (
@@ -19,12 +19,8 @@ function Happy() {
 
 {/* Music Cards Section */}
 <div className='flex justify-center h-10 font-[syne] text-[30px] text-blue-500'><p>Music</p></div>
-<div className="flex flex-col md:flex-row justify-center items-center gap-10 pt-3 px-4">
-  <Card title="English" />
-  <Card title="Hindi" />
-  <Card title="Turkish" />
-  <Card title="All" />
-</div>
+<SpotifySearch mood="happy" />
+
 {/* Movies section */}
 <div className=' px-8'>
 <MovieCarousel key={Date.now()} mood='happy'/>
