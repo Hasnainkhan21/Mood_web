@@ -26,7 +26,7 @@ function Relaxed() {
 {/* books */}
 <div className='flex justify-center h-10 font-[syne] text-[30px] text-green-500'><p>Books</p></div>
 
-  <Books />
+  <Books mood="Relaxed" />
 
   {/* footer */}
   <div className='mt-15'>
