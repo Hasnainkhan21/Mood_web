@@ -33,7 +33,7 @@ export default function SpotifySearch({ mood = "happy" }) {
       {/* ...your search UI... */}
       <Card style={{ minHeight: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {loading ? (
-          <CircularProgress color="secondary" />
+          <CircularProgress size={50} />
         ) : (
           <div style={{ width: '100%' }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
             {/* Render your tracks here */}
