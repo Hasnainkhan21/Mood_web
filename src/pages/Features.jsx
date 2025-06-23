@@ -6,32 +6,32 @@ import '@fontsource/syne';
 
 const featuresData = [
   {
-    img: 'https://shorturl.at/r7hZG',
+    iframeSrc: 'https://www.youtube.com/embed/D2CKOIiabfg?controls=1&rel=0&modestbranding=1',
     title: 'GYM Music',
     description: 'Energetic Playlist for workouts',
   },
   {
-    img: 'https://shorturl.at/k4zBA',
+    iframeSrc: 'https://www.youtube.com/embed/xAR6N9N8e6U?controls=1&rel=0&modestbranding=1',
     title: 'Focus Music',
     description: 'Tunes to help you concentrate',
   },
   {
-    img: 'https://shorturl.at/hz2mX',
-    title: 'Wedding Music',
+    iframeSrc: 'https://www.youtube.com/embed/kKaF-sjG06g?controls=1&rel=0&modestbranding=1',
+    title: 'Party Vibes',
     description: 'Celebrate your party',
   },
   {
-    img: 'https://shorturl.at/0OK3J',
+    iframeSrc: 'https://www.youtube.com/embed/NQcYZplTXnQ?controls=1&rel=0&modestbranding=1',
     title: 'Mental Wellness Tips',
     description: 'Advice for better health',
   },
   {
-    img: 'https://shorturl.at/59ApG',
+    iframeSrc: 'https://www.youtube.com/embed/YcGXViwXItM?controls=1&rel=0&modestbranding=1',
     title: 'Podcasts Corner',
     description: 'Listen to mood-enhancing episodes',
   },
   {
-    img: 'https://shorturl.at/NDgkA',
+    iframeSrc: 'https://www.youtube.com/embed/fu1A8Ya2-QE?controls=1&rel=0&modestbranding=1',
     title: 'Quotes',
     description: 'Read and feel inspiring lines',
   },
@@ -50,15 +50,15 @@ function Features() {
         </p>
       </div>
 
-      {/* Single Flex Container for All Cards */}
+      {/* Card Section */}
       <div className="flex flex-wrap justify-center gap-10 px-8 mb-10">
         {featuresData.map((feature, index) => (
           <div key={index} className="w-full sm:w-[300px]">
             <FeatureCard
-              img={feature.img}
+              iframeSrc={feature.iframeSrc}
               title={feature.title}
               description={feature.description}
-            />
+/>
           </div>
         ))}
       </div>
