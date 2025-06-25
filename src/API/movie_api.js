@@ -4,9 +4,9 @@ const API_KEY = "7d719772411e15330f4a46554cc14bf4";
 const MOOD_GENRE_MAP = {
   relaxed:   [18, 10402, 10749, 35],      // Drama, Music, Romance, Comedy
   sad:       [10749, 18, 36],  // Drama, Romance, War, History, Documentary  [18, 10749, 10752, 36, 99]
-  angry:     [28, 53, 80, 10770],         // Action, Thriller, Crime, TV Movie
+  angry:     [28, 53, 10770],         // Action, Thriller, Crime, TV Movie
   motivated: [99, 10752, 36, 28],     // Documentary, Drama, War, History, Action
-  happy: [35, 12, 14, 10402, 10751]   // Comedy, Adventure, Fantasy, Music, Family
+  happy: [10749, 28]   
 };
 
 

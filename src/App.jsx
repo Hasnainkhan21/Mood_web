@@ -28,7 +28,7 @@ function App() {
 <Route path='/angrymood' element={<ProtectedRoute> <Angry /> </ProtectedRoute>} />
 <Route path='/sadmood' element={<ProtectedRoute> <Sad /></ProtectedRoute>} />
 <Route path='/relaxedmood' element={<ProtectedRoute> <Relaxed /></ProtectedRoute>} />
-<Route path='/motivatedmood' element={<ProtectedRoute> <Relaxed /></ProtectedRoute>} />
+<Route path='/motivatedmood' element={<ProtectedRoute> <Motivated /></ProtectedRoute>} />
 
 
       </Routes>

@@ -1,9 +1,10 @@
 import React from 'react';
 import '@fontsource/syne';
 
+
 const Testimonial = () => {
     return (
-        <section className="py-12 bg-gray-50 sm:py-16 lg:py-20">
+        <section className="py-12 bg-gray-50 sm:py-16 lg:py-13">
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="flex flex-col items-center text-center">
                     <p className="text-lg font-medium text-gray-600 font-pj">
@@ -63,11 +64,7 @@ const Testimonial = () => {
                                 </div>
 
                                 <div className="flex items-center mt-8">
-                                    <img
-                                        className="flex-shrink-0 object-cover rounded-full w-11 h-11"
-                                        src="https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-1.png"
-                                        alt="Leslie Alexander"
-                                    />
+                                    
                                     <div className="ml-4">
                                         <p className="text-base font-bold text-gray-900 font-pj">– Atif Khan</p>
                                         <p className="mt-0.5 text-sm font-pj text-gray-600">Freelance React Developer</p>
