@@ -5,13 +5,13 @@ import { Login_User } from '../API/Api_endpoints';
 import { useNavigate, Link } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 
-
 const Login = () => {
   const Nav = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,30 +26,38 @@ const Login = () => {
       setError('Please enter a valid email address.');
       return;
     }
-     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-     if(!passwordRegex.test(password)){
-      setError('Password must be at least 6 characters and contain one letter and number');
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!passwordRegex.test(password)) {
+      setError('Password must be at least 6 characters and contain one letter and one number.');
       return;
-     }
+    }
 
     setError('');
-    const User = { email, password };
+    setLoading(true);
+
     const URI = Add_User + Login_User;
+    const User = { email: email.trim(), password };
 
     try {
       const res = await axios.post(URI, User);
       const data = res.data;
-      console.log(data);
 
-      if (data) {
-        setMsg(data.msg);   //get the backend msg (login successffull/not)
-        localStorage.setItem('token', data.User_Token);   //stores the generated token in localstorage
-        localStorage.setItem('userName', data.LoginUser.userName)
-        Nav('/');
-      }
+      setMsg(data.msg);
+      localStorage.setItem('token', data.User_Token);
+      localStorage.setItem('userName', data.LoginUser.userName);
+
+      setEmail('');
+      setPassword('');
+      Nav('/');
     } catch (err) {
-      setError("Account not found");
-      console.error(err);
+      if (err.response?.data?.wrn) {
+        setError(err.response.data.wrn);
+      } else {
+        setError("Login failed. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,8 +65,10 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-        {error && <Alert severity="error">{error}</Alert>}
-        {msg && <Alert severity="success">{msg}</Alert>}
+
+        {error && <Alert severity="error" className="mb-4">{error}</Alert>}
+        {msg && <Alert severity="success" className="mb-4">{msg}</Alert>}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-600 text-sm mb-2">Email</label>
@@ -66,29 +76,41 @@ const Login = () => {
               type="email"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={email}
-              onChange={(e) => setEmail(e.target.value) || setError('')}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError('');
+              }}
               placeholder="you@example.com"
+              autoComplete="email"
             />
           </div>
+
           <div className="mb-6">
             <label className="block text-gray-600 text-sm mb-2">Password</label>
             <input
               type="password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={password}
-              onChange={(e) => setPassword(e.target.value) || setError('')}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError('');
+              }}
               placeholder="********"
+              autoComplete="current-password"
             />
           </div>
+
           <button
             type="submit"
-            className="w-full bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 transition duration-200 text-lg font-semibold"
+            disabled={loading}
+            className={`w-full py-3 rounded-lg transition duration-200 text-lg font-semibold ${
+              loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-700 text-white'
+            }`}
           >
-            Login
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
-        {/* ✅ Signup Link */}
         <p className="mt-6 text-center text-sm text-gray-600">
           Don't have an account?{' '}
           <Link to="/signup" className="text-blue-500 hover:underline font-medium">

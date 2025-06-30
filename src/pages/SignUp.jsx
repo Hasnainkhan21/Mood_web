@@ -10,7 +10,8 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [msg, setMsg] = useState("")
+  const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({
     userName: "",
@@ -22,16 +23,14 @@ function SignUp() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Reset errors
+    setMsg("");
     setErrors({ userName: "", email: "", password: "", confirmPassword: "" });
 
     const newErrors = {};
 
     if (!userName.trim()) newErrors.userName = "Username is required";
-
     if (!email) {
       newErrors.email = "Email is required";
     } else if (!emailRegex.test(email)) {
@@ -41,7 +40,7 @@ function SignUp() {
     if (!password) {
       newErrors.password = "Password is required";
     } else if (!passwordRegex.test(password)) {
-      newErrors.password = "Password must be at least 6 characters and contain one letter and number";
+      newErrors.password = "Password must be at least 6 characters and contain letters and numbers";
     }
 
     if (!confirmPassword) {
@@ -55,33 +54,35 @@ function SignUp() {
       return;
     }
 
-  
+    const newUser = {
+      userName: userName.trim(),
+      email: email.trim(),
+      password
+    };
 
-    // connecting with backend
-    const newUser ={ 
-                     userName : userName,
-                     email: email,
-                     password: password 
-                  }  
-    console.log("newUser", newUser);
     const URI = Add_User + Add_User_EndPoint;
-    axios.post(URI, newUser)
-         .then((res)=>{
-            console.log(res);
-            setMsg(res.data);
-            alert("Account created successfully");
-            Nav('/login');
-          })
-          .catch((error)=>{
-            console.log(error);
-            setMsg("failed Server error");
-          })
+    setLoading(true);
 
-    // Clear form
-    setUserName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
+    try {
+      const res = await axios.post(URI, newUser);
+      console.log(res.data);
+      setMsg(res.data.msg);
+      alert("Account created successfully");
+      Nav('/login');
+    } catch (error) {
+      console.error("Signup error", error);
+      if (error.response?.data?.warn) {
+        setMsg(error.response.data.warn);
+      } else {
+        setMsg("Server error. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+      setUserName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    }
   };
 
   return (
@@ -92,20 +93,23 @@ function SignUp() {
       >
         <h2 className="text-2xl font-bold text-center text-gray-600">Create Account</h2>
 
+        {msg && (
+          <p className="text-center text-red-500 text-sm font-medium">{msg}</p>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label htmlFor="username" className="block mb-1 text-gray-600 font-medium">Username</label>
             <input
               type="text"
               id="username"
+              autoComplete="username"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-400"
               placeholder="Enter your username"
-          
-
             />
-            {errors.userName && <p className="text-red-600 text-[12px] mt-1">{errors.userName}</p>}
+            {errors.userName && <p className="text-red-600 text-sm mt-1">{errors.userName}</p>}
           </div>
 
           <div>
@@ -113,12 +117,13 @@ function SignUp() {
             <input
               type="email"
               id="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-400"
               placeholder="Enter your email"
             />
-            {errors.email && <p className="text-red-600 text-[12px]  mt-1">{errors.email}</p>}
+            {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
           </div>
 
           <div>
@@ -126,12 +131,13 @@ function SignUp() {
             <input
               type="password"
               id="password"
+              autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter your password"
             />
-            {errors.password && <p className="text-red-600 text-[12px]  mt-1">{errors.password}</p>}
+            {errors.password && <p className="text-red-600 text-sm mt-1">{errors.password}</p>}
           </div>
 
           <div>
@@ -144,15 +150,18 @@ function SignUp() {
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-400"
               placeholder="Confirm password"
             />
-            {errors.confirmPassword && <p className="text-red-600 text-[12px] mt-1">{errors.confirmPassword}</p>}
+            {errors.confirmPassword && <p className="text-red-600 text-sm mt-1">{errors.confirmPassword}</p>}
           </div>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 transition duration-200 text-lg font-semibold"
+          disabled={loading}
+          className={`w-full py-3 rounded-lg transition duration-200 text-lg font-semibold ${
+            loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-600 hover:bg-gray-700 text-white'
+          }`}
         >
-          Sign Up
+          {loading ? "Signing Up..." : "Sign Up"}
         </button>
       </form>
     </div>

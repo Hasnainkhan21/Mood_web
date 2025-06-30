@@ -80,7 +80,6 @@ const Testimonial = () => {
                     <FaUserCircle className="w-11 h-11 text-gray-400" />
                     <div className="ml-4">
                       <p className="text-base font-bold text-gray-900 font-pj">– {review.name || 'Anonymous'}</p>
-                      <p className="mt-0.5 text-sm font-pj text-gray-600">Moodora User</p>
                     </div>
                   </div>
                 </div>
